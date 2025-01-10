@@ -31,8 +31,10 @@ async function getProductById(id: string): Promise<Product | null> {
 }
 
 // Dynamic Product Page Component
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  const { id } = await params; // Awaiting the `params` dynamically
+export default async function ProductPage(props: { params: Promise<{ id: string }> }) {
+  // Await params explicitly
+  const { id } = await props.params;
+
   const product = await getProductById(id);
 
   if (!product) {
