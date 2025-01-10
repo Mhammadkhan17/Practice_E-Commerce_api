@@ -47,56 +47,57 @@ export default async function ProductPage(props: { params: Promise<{ id: string 
 
   return (
     <main className="bg-gray-50 min-h-screen p-10">
-      <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <div className="flex flex-col md:flex-row gap-6">
-          {/* Product Image */}
-          <div className="flex-shrink-0">
-            <Image
-              src={product.imageUrl}
-              alt={product.name}
-              width={400}
-              height={300}
-              className="object-contain rounded-lg"
-            />
-          </div>
+  <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
+    <div className="flex flex-col md:flex-row gap-6">
+      {/* Product Image */}
+      <div className="flex-shrink-0 w-full md:w-1/3">
+        <Image
+          src={product.imageUrl}
+          alt={product.name}
+          width={300}
+          height={300}
+          className="object-cover rounded-lg w-full h-auto"
+        />
+      </div>
 
-          {/* Product Details */}
-          <div className="flex-grow">
-            <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
-            <p className="text-gray-600 mb-4">{product.description}</p>
-            <div className="flex items-center gap-4 mb-4">
-              <span className="text-xl text-blue-500 font-bold">
-                ${product.price.toFixed(2)}
-              </span>
-              {product.discountPercentage && (
-                <span className="text-sm bg-green-100 text-green-700 px-2 py-1 rounded">
-                  {product.discountPercentage}% OFF
-                </span>
-              )}
-            </div>
-            {product.rating && (
-              <p className="text-gray-600">
-                Rating: <span className="font-semibold">{product.rating}</span> ⭐{" "}
-                {product.ratingCount && (
-                  <span>({product.ratingCount} reviews)</span>
-                )}
-              </p>
+      {/* Product Details */}
+      <div className="flex-grow">
+        <h1 className="text-3xl font-bold mb-2">{product.name}</h1>
+        <p className="text-gray-600 mb-4">{product.description}</p>
+        <div className="flex items-center gap-4 mb-4">
+          <span className="text-xl text-blue-500 font-bold">
+            ${product.price.toFixed(2)}
+          </span>
+          {product.discountPercentage && (
+            <span className="text-sm bg-green-100 text-green-700 px-2 py-1 rounded">
+              {product.discountPercentage}% OFF
+            </span>
+          )}
+        </div>
+        {product.rating && (
+          <p className="text-gray-600">
+            Rating: <span className="font-semibold">{product.rating}</span> ⭐{" "}
+            {product.ratingCount && (
+              <span>({product.ratingCount} reviews)</span>
             )}
+          </p>
+        )}
 
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mt-4">
-              {product.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-sm bg-gray-100 text-gray-700 px-2 py-1 rounded"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mt-4">
+          {product.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-sm bg-gray-100 text-gray-700 px-2 py-1 rounded"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
-    </main>
+    </div>
+  </div>
+</main>
+
   );
 }
